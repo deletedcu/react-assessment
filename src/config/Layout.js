@@ -8,7 +8,7 @@ const Layout = () => {
 
   return (
     <Box className={classes.mainContainer}>
-      <Container className={classes.container} maxWidth="xs">
+      <Container className={classes.container} maxWidth="md">
         <Student />
       </Container>
     </Box>

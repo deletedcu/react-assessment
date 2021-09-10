@@ -1,18 +1,36 @@
 import React from "react";
-import {Box, Typography} from "@material-ui/core";
+import {Box, Divider, Typography} from "@material-ui/core";
 import PropTypes from "prop-types";
+import { useStyles } from "../theme/styles/pages/studentItemStyles";
 
 const StudentItem = props => {
+  const classes = useStyles();
+
   return (
-    <Box>
-      <img src={props.pic} />
-      <Typography variant="h2">
-        {`${props.firstName} ${props.lastName}`}
-      </Typography>
-      <Typography variant="body1">{`Email: ${props.email}`}</Typography>
-      <Typography variant="body1">{`Company: ${props.company}`}</Typography>
-      <Typography variant="body1">{`Skill: ${props.skill}`}</Typography>
-      <Typography variant="body1">{`Average: ${props.id}`}</Typography>
+    <Box className={classes.container}>
+      <Box className={classes.mainContainer}>
+        <img src={props.pic} className={classes.image}/>
+        <Box className={classes.infoContainer}>
+          <Typography variant="h4">
+            {`${props.firstName} ${props.lastName}`}
+          </Typography>
+          <Box className={classes.detailContainer}>
+            <Typography variant="body1">
+              {`Email: ${props.email}`}
+            </Typography>
+            <Typography variant="body1">
+              {`Company: ${props.company}`}
+            </Typography>
+            <Typography variant="body1">
+              {`Skill: ${props.skill}`}
+            </Typography>
+            <Typography variant="body1">
+              {`Average: ${props.id}`}
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+      <Divider light />
     </Box>
   );
 };

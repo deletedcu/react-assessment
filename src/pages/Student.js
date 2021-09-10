@@ -13,10 +13,12 @@ const Student = () => {
   }, [students]);
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <List>
         {students.map(item => {
-          return <StudentItem key={item.id} {...item} />
+          return (
+            <StudentItem key={item.id} {...item} />
+          );
         })}
       </List>
     </Container>

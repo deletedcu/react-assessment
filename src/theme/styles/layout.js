@@ -15,7 +15,7 @@ export const useStyle = makeStyles(theme => ({
   },
   container: {
     background: theme.palette.background.primary,
-    margin: theme.spacing(0, 0.5),
+    margin: 0,
     borderRadius: 16,
     border: `1px solid ${theme.palette.primary.main}`,
     padding: 0,
