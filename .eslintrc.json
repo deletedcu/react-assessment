@@ -20,7 +20,7 @@
   ],
   "rules": {
     "curly": ["error", "all"],
-    "max-len": ["error", {"code": 80, "ignoreUrls": true}],
+    "max-len": ["error", {"code": 100, "ignoreUrls": true}],
     "no-confusing-arrow": ["error", { "allowParens": false }],
     "no-mixed-operators": "error",
     "no-unexpected-multiline": "error",

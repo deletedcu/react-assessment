@@ -32,5 +32,9 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     marginTop: "10px",
     marginLeft: "20px",
-  }
+  },
+  iconButton: {
+    marginLeft: "auto",
+    marginRight: "20px",
+  },
 }));
