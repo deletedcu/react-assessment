@@ -19,6 +19,7 @@ export const useStyles = makeStyles(theme => ({
     borderRadius: "50px",
     border: `1px solid ${theme.palette.border.lightBorder}`,
     marginTop: "20px",
+    marginLeft: "30px",
   },
   infoContainer: {
     display: "flex",

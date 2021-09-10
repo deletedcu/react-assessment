@@ -1,28 +1,23 @@
-import React, { useEffect } from "react";
-import { Container, List } from "@material-ui/core";
-import { useStudents } from "../hooks";
+import React from "react";
+import { List } from "@material-ui/core";
 import StudentItem from "./StudentItem";
+import PropTypes from "prop-types";
 
-const Student = () => {
-  const { students, getStudentsF } = useStudents();
-
-  useEffect(() => {
-    if (students.length === 0) {
-      getStudentsF();
-    }
-  }, [students]);
+const Student = ({students}) => {
 
   return (
-    <Container maxWidth="md">
-      <List>
-        {students.map(item => {
-          return (
-            <StudentItem key={item.id} {...item} />
-          );
-        })}
-      </List>
-    </Container>
+    <List>
+      {students.map(item => {
+        return (
+          <StudentItem key={item.id} {...item} />
+        );
+      })}
+    </List>
   );
+};
+
+Student.propTypes = {
+  students: PropTypes.array,
 };
 
 export default Student;
