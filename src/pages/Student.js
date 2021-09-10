@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { Container, Button } from "@material-ui/core";
+import { Container, List } from "@material-ui/core";
 import { useStudents } from "../hooks";
+import StudentItem from "./StudentItem";
 
 const Student = () => {
   const { students, getStudentsF } = useStudents();
@@ -13,7 +14,11 @@ const Student = () => {
 
   return (
     <Container maxWidth="sm">
-      <Button>Default</Button>
+      <List>
+        {students.map(item => {
+          return <StudentItem key={item.id} {...item} />
+        })}
+      </List>
     </Container>
   );
 };
