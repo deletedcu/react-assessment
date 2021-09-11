@@ -4,6 +4,9 @@ import Student from "./Student";
 import { useStudents } from "../hooks";
 import { useStyles } from "../theme/styles/pages/mainStyles";
 
+var searchName = "";
+var searchTag = "";
+
 const Main = () => {
   const classes = useStyles();
   const { students, getStudentsF } = useStudents();
@@ -18,18 +21,39 @@ const Main = () => {
   }, [students]);
 
   function handleOnChangeName(event) {
-    console.log(event.target.value);
-    const filterData = filterByName(event.target.value.trim());
-    setData(filterData);
+    searchName = event.target.value.trim().toLowerCase();
+    const result = filterData();
+    setData(result);
   }
 
-  function filterByName(name) {
-    if (name === "") {
+  function handleOnChangeTag(event) {
+    searchTag = event.target.value.trim().toLowerCase();
+    const result = filterData();
+    setData(result);
+  }
+
+  function filterData() {
+    if (searchName === "" && searchTag === "") {
       return students;
     } else {
       return students.filter(item => {
-        const fullName = `${item.firstName} ${item.lastName}`.toLowerCase();
-        return fullName.includes(name.toLowerCase());
+        if (searchName !== "") {
+          const fullName = `${item.firstName} ${item.lastName}`.toLowerCase();
+          if (!fullName.includes(searchName)) {
+            return false;
+          }
+        }
+        
+        if (searchTag !== "") {
+          if (item.tags) {
+            const tags = item.tags.join("|").toLowerCase();
+            return tags.includes(searchTag);
+          } else {
+            return false;
+          }
+        }
+
+        return true;
       });
     }
   }
@@ -42,6 +66,12 @@ const Main = () => {
         className={classes.searchName}
         size="medium"
         onChange={handleOnChangeName} />
+      <TextField
+        id="search-tag"
+        label="Search by tag"
+        className={classes.searchTag}
+        size="medium"
+        onChange={handleOnChangeTag} />
       <Student students={data}/>
     </Box>
   );

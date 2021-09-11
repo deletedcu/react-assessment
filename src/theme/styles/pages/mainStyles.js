@@ -9,4 +9,8 @@ export const useStyles = makeStyles(() => ({
     width: "100vw-20px",
     margin: "10px 10px 4px 10px",
   },
+  searchTag: {
+    width: "100vw-20px",
+    margin: "2px 10px 4px 10px",
+  },
 }));
