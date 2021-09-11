@@ -1,18 +1,31 @@
 import React, { useState } from "react";
 import {
   Box,
+  Chip,
   Divider,
   IconButton,
   List,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons"
 import PropTypes from "prop-types";
+import useStateWithCallback from "use-state-with-callback";
 import { useStyles } from "../theme/styles/pages/studentItemStyles";
+import { useTag } from "../hooks";
 
+var currentTag = "";
 const StudentItem = props => {
+  
+  const { addTagF, deleteTagF } = useTag();
   const [isExpand, setExpand] = useState(false);
   const classes = useStyles();
+  const [text, setText] = useStateWithCallback("", text => {
+    if (text === "" && currentTag !== "") {
+      addTagF({ id: props.id, tag: currentTag });
+      currentTag = "";
+    }
+  });
 
   function calculateAverage() {
     let sum = 0;
@@ -21,6 +34,23 @@ const StudentItem = props => {
     });
     const average = (sum / props.grades.length).toFixed(2);
     return average;
+  }
+
+  function handleOnDeleteTag(tag) {
+    deleteTagF({ id: props.id, tag });
+  }
+
+  function handleOnTextChange(event) {
+    event.preventDefault();
+    setText(event.target.value);
+  }
+
+  function handleOnKeyDown(event) {
+    if (event.key === "Enter" && event.target.value !== "") {
+      event.preventDefault();
+      currentTag = event.target.value;
+      setText("");
+    }
   }
 
   return (
@@ -55,6 +85,28 @@ const StudentItem = props => {
                 })}
               </List>
             }
+            {(props.tags && props.tags.length > 0) &&
+              <Box className={classes.tagContainer}>
+                {props.tags.map((data, idx) => {
+                  return (
+                    <Chip
+                      key={idx}
+                      label={data}
+                      onDelete={() => handleOnDeleteTag(data)}
+                      className={classes.tag}
+                    />
+                  );
+                })}
+              </Box>
+            }
+            <TextField
+              id={`tag_${props.id}`}
+              label="Add a tag"
+              className={classes.textTag}
+              size="small"
+              value={text}
+              onChange={handleOnTextChange}
+              onKeyDown={handleOnKeyDown} />
           </Box>
         </Box>
         <IconButton
@@ -79,6 +131,7 @@ StudentItem.propTypes = {
   lastName: PropTypes.string,
   pic: PropTypes.string,
   skill: PropTypes.string,
+  tags: PropTypes.array,
 }
 
 

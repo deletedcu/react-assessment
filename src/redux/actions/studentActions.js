@@ -13,7 +13,6 @@ export const getStudents = () => {
     try {
       const res = await axios.get(`${BASE_URL}/students`);
       if (res?.status === 200) {
-        console.log(res.data.students);
         dispatch({
           type: studentTypes.GET_STUDENTS, 
           payload: res.data.students,
@@ -23,4 +22,16 @@ export const getStudents = () => {
       console.error(e);
     }
   }
+};
+
+export const addTag = ({id, tag}) => {
+  return dispatch => {
+    dispatch({ type: studentTypes.ADD_TAG, payload: {id, tag}});
+  };
+};
+
+export const deleteTag = ({id, tag}) => {
+  return dispatch => {
+    dispatch({ type: studentTypes.DELETE_TAG, payload: {id, tag}});
+  };
 };

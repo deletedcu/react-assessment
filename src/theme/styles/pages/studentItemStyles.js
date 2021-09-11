@@ -37,4 +37,18 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: "auto",
     marginRight: "20px",
   },
+  tagContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    flexWrap: "wrap",
+    listStyle: "none",
+    marginTop: "10px",
+  },
+  tag: {
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  textTag: {
+    marginTop: "2px",
+  }
 }));
