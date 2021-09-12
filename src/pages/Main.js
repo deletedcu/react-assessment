@@ -1,53 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import Student from "./Student";
+import { SearchTextField } from "../components";
 import { useStudents } from "../hooks";
 import { useStyles } from "../theme/styles/pages/mainStyles";
-
-var searchName = "";
-var searchTag = "";
 
 const Main = () => {
   const classes = useStyles();
   const { students, getStudentsF } = useStudents();
-  const [data, setData] = useState([]);
+  const [name, setName] = useState("");
+  const [tag, setTag] = useState("");
 
   useEffect(() => {
     if (students.length === 0) {
       getStudentsF();
-    } else {
-      setData(students);
     }
-  }, [students]);
+  }, [students, name, tag]);
 
   function handleOnChangeName(event) {
-    searchName = event.target.value.trim().toLowerCase();
-    const result = filterData();
-    setData(result);
+    setName(event.target.value.trim().toLowerCase());
   }
 
   function handleOnChangeTag(event) {
-    searchTag = event.target.value.trim().toLowerCase();
-    const result = filterData();
-    setData(result);
+    setTag(event.target.value.trim().toLowerCase());
   }
 
-  function filterData() {
-    if (searchName === "" && searchTag === "") {
+  const filterData = () => {
+    if (name === "" && tag === "") {
       return students;
     } else {
       return students.filter(item => {
-        if (searchName !== "") {
+        if (name !== "") {
           const fullName = `${item.firstName} ${item.lastName}`.toLowerCase();
-          if (!fullName.includes(searchName)) {
+          if (!fullName.includes(name)) {
             return false;
           }
         }
         
-        if (searchTag !== "") {
+        if (tag !== "") {
           if (item.tags) {
             const tags = item.tags.join("|").toLowerCase();
-            return tags.includes(searchTag);
+            return tags.includes(tag);
           } else {
             return false;
           }
@@ -60,19 +53,19 @@ const Main = () => {
 
   return (
     <Box className={classes.container}>
-      <TextField
+      <SearchTextField
         id="search-name"
         label="Search by name"
         className={classes.searchName}
         size="medium"
         onChange={handleOnChangeName} />
-      <TextField
+      <SearchTextField
         id="search-tag"
         label="Search by tag"
         className={classes.searchTag}
         size="medium"
         onChange={handleOnChangeTag} />
-      <Student students={data}/>
+      <Student students={filterData()}/>
     </Box>
   );
 };
