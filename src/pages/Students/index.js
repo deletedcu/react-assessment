@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@material-ui/core";
-import StudentList from "./StudentList";
+import { Box, List } from "@material-ui/core";
 import { SearchTextField } from "../../components";
+import StudentItem from "./StudentItem";
 import { useStudents } from "../../hooks";
 import { useStyles } from "../../theme/styles/pages/mainStyles";
 
@@ -65,7 +65,15 @@ const Students = () => {
         className={classes.searchTag}
         size="medium"
         onChange={handleOnChangeTag} />
-      <StudentList students={filterData()}/>
+      <List>
+        {filterData().map(item => {
+          return (
+            <StudentItem 
+              key={item.id} 
+              {...item} />
+          );
+        })}
+      </List>
     </Box>
   );
 };
