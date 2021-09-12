@@ -11,8 +11,8 @@ import {
 import { Add, Remove } from "@material-ui/icons"
 import PropTypes from "prop-types";
 import useStateWithCallback from "use-state-with-callback";
-import { useStyles } from "../theme/styles/pages/studentItemStyles";
-import { useTag } from "../hooks";
+import { useStyles } from "../../theme/styles/pages/studentItemStyles";
+import { useTag } from "../../hooks";
 
 var currentTag = "";
 const StudentItem = props => {

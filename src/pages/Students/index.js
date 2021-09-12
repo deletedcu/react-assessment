@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@material-ui/core";
-import Student from "./Student";
-import { SearchTextField } from "../components";
-import { useStudents } from "../hooks";
-import { useStyles } from "../theme/styles/pages/mainStyles";
+import StudentList from "./StudentList";
+import { SearchTextField } from "../../components";
+import { useStudents } from "../../hooks";
+import { useStyles } from "../../theme/styles/pages/mainStyles";
 
-const Main = () => {
+const Students = () => {
   const classes = useStyles();
   const { students, getStudentsF } = useStudents();
   const [name, setName] = useState("");
@@ -65,9 +65,9 @@ const Main = () => {
         className={classes.searchTag}
         size="medium"
         onChange={handleOnChangeTag} />
-      <Student students={filterData()}/>
+      <StudentList students={filterData()}/>
     </Box>
   );
 };
 
-export default Main;
+export default Students;

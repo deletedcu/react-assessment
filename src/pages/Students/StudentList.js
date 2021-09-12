@@ -3,7 +3,7 @@ import { List } from "@material-ui/core";
 import StudentItem from "./StudentItem";
 import PropTypes from "prop-types";
 
-const Student = (props) => {
+const StudentList = (props) => {
 
   return (
     <List>
@@ -18,8 +18,8 @@ const Student = (props) => {
   );
 };
 
-Student.propTypes = {
+StudentList.propTypes = {
   students: PropTypes.array.isRequired,
 };
 
-export default Student;
+export default StudentList;

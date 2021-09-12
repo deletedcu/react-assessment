@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container } from "@material-ui/core";
 import { useStyle } from "../theme/styles/layout";
-import Main from "../pages/Main";
+import Students from "../pages/Students";
 
 const Layout = () => {
   const classes = useStyle();
@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <Box className={classes.mainContainer}>
       <Container className={classes.container} maxWidth="md">
-        <Main />
+        <Students />
       </Container>
     </Box>
   );
