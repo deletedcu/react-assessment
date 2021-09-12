@@ -47,7 +47,7 @@ const StudentItem = props => {
   return (
     <Box className={classes.container}>
       <Box className={classes.mainContainer}>
-        <img src={props.pic} className={classes.image}/>
+        <img src={props.pic} className={classes.image} alt={props.company}/>
         <Box className={classes.infoContainer}>
           <Typography variant="h4">
             {`${props.firstName} ${props.lastName}`}
