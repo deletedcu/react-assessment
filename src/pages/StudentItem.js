@@ -27,15 +27,6 @@ const StudentItem = props => {
     }
   });
 
-  function calculateAverage() {
-    let sum = 0;
-    props.grades.forEach(val => {
-      sum += parseInt(val);
-    });
-    const average = (sum / props.grades.length).toFixed(2);
-    return average;
-  }
-
   function handleOnDeleteTag(tag) {
     deleteTagF({ id: props.id, tag });
   }
@@ -72,7 +63,7 @@ const StudentItem = props => {
               {`Skill: ${props.skill}`}
             </Typography>
             <Typography variant="body1">
-              {`Average: ${calculateAverage()}%`}
+              {`Average: ${props.average}%`}
             </Typography>
             {isExpand &&
               <List>
@@ -131,6 +122,7 @@ StudentItem.propTypes = {
   lastName: PropTypes.string,
   pic: PropTypes.string,
   skill: PropTypes.string,
+  average: PropTypes.string,
   tags: PropTypes.array,
 }
 

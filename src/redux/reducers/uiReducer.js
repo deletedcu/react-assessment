@@ -1,7 +1,7 @@
 import * as uiTypes from "../types/uiTypes";
 
 const initialState = {
-  theme: localStorage.getItem("theme") || "light",
+  theme: localStorage.getItem("theme") || "dark",
 }
 
 const uiReducer = (state = initialState, action) => {
