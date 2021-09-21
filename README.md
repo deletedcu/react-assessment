@@ -11,7 +11,7 @@
 
 ## Run application
 ```
-git clone https://github.com/curest0x1021/react-assessment
+git clone https://github.com/curest0x1021/react-assessment.git
 cd react-assessment
 npm install
 npm run start
